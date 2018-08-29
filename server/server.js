@@ -10,14 +10,13 @@ app.use(cors());
 
 app.use(express.json());
 
-const fs = require('fs');
-const dataPath = 'data/cute-animals.json';
+const pg = require('pg');
+const Client = pg.Client;
+const databaseUrl = 'postgres://localhost:5432/first_fullstack_app';
+const client = new Client(databaseUrl);
+client.connect();
 
-function readData() {
-  const raw = fs.readFileSync(dataPath);
-  const data = JSON.parse(raw);
-  return data;
-}
+
 
 app.get('/api/cute-animals', (req, res) => {
   const data = readData();
