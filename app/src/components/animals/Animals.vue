@@ -1,5 +1,6 @@
 <template>
   <div>
+    <AddAnimal :onAdd="handleAdd"/>
     <h2>Animals List</h2>
     <Animal v-for="animal in animals"
       :key="animal.id"
@@ -9,8 +10,9 @@
 </template>
 
 <script>
-import Animal from './Animal';
-import api from '../../services/api';
+import Animal from './Animal.vue';
+import AddAnimal from './AddAnimal.vue';
+import api from '../../services/api.js';
 
 export default {
   data() {
@@ -25,7 +27,16 @@ export default {
       });
   },
   components: {
-    Animal
+    Animal,
+    AddAnimal
+  },
+  methods: {
+    handleAdd(animal) {
+      return api.addAnimal(animal)
+        .then(saved => {
+          this.animals.push(saved);
+        });
+    }
   }
 };
 </script>
