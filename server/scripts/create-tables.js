@@ -1,6 +1,6 @@
 const pg = require('pg');
 const Client = pg.Client;
-const databaseUrl = 'postgres://localhots:5432/first_fullstack_app';
+const databaseUrl = 'postgres://localhost:5432/first_fullstack_app';
 
 const client = new Client(databaseUrl);
 
@@ -16,7 +16,7 @@ client.connect()
       CREATE TABLE IF NOT EXISTS animals (
           id SERIAL PRIMARY KEY,
           name VARCHAR(256) NOT NULL,
-          type VARCHAR(256) NOT NULL,
+          type_id INTEGER NOT NULL REFERENCES types(id),
           age INTEGER NOT NULL,
           dangerous BOOLEAN NOT NULL,
           url TEXT NOT NULL

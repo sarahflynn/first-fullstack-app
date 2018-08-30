@@ -7,6 +7,7 @@ const client = new Client(databaseUrl);
 client.connect()
   .then (() => {
     return client.query(`
+      DROP TABLE IF EXISTS types;
       DROP TABLE IF EXISTS animals;
     `);
   })

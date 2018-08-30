@@ -17,7 +17,7 @@ app.get('/api/animals', (req, res) => {
     SELECT
       a.id,
       a.name,
-      a.type,
+      a.type_id,
       a.age,
       a.dangerous,
       a.url
@@ -25,7 +25,7 @@ app.get('/api/animals', (req, res) => {
       t.pet
     FROM animals as a
     JOIN types as t
-    ON a.type = t.id
+    ON a.type_id = t.id
     ORDER BY n.name;
   `)
     .then(result => {
@@ -39,7 +39,7 @@ app.get('/api/animals/:id', (req, res) => {
     SELECT
       id,
       name,
-      type,
+      type_id,
       age,
       dangerous,
       url
@@ -59,11 +59,11 @@ app.post('/api/animals', (req, res) => {
   const body = req.body;
 
   client.query(`
-    INSERT INTO animals (name, type, age, dangerous, url)
+    INSERT INTO animals (name, type_id, age, dangerous, url)
     VALUES ($1, $2, $3, $4, $5)
     RETURNING *;
   `,
-  [body.name, body.type, body.age, body.dangerous, body.url]
+  [body.name, body.type_id, body.age, body.dangerous, body.url]
   )
     .then(result => {
       res.send(result.rows[0]);
