@@ -1,5 +1,5 @@
 <template>
-  <AnimalDetail :animal="animal"/>
+  <AnimalDetail v-if="animal" :animal="animal"/>
 </template>
 
 <script>
@@ -13,7 +13,7 @@ export default {
     };
   },
   created() {
-    this.animal = api.getAnimal(this.$route.params.id)
+    api.getAnimal(this.$route.params.id)
       .then(animal => {
         this.animal = animal;
       });
