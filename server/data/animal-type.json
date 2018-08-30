@@ -1,0 +1,26 @@
+[
+  {
+    "type": "dog",
+    "pet": true
+  },
+  {
+    "type": "penguin",
+    "pet": false
+  },
+  {
+    "type": "slow-loris",
+    "pet": false
+  },
+  {
+    "type": "dingo",
+    "pet": false
+  },
+  {
+    "type": "hedgehog",
+    "pet": true
+  },
+  {
+    "type": "oranutan",
+    "pet": false
+  }
+]

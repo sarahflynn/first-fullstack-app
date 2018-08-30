@@ -2,29 +2,30 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "http-server.js",
   "scripts": {
     "create-tables": "node scripts/create-tables.js",
     "drop-tables": "node scripts/drop-tables.js",
     "recreate-tables": "npm run drop-tables && npm run create-tables",
-    "lint": "eslint .",
-    "pretest": "npm run lint",
-    "test": "exit 0",
-    "start": "nodemon server.js"
+    "seed-types": "node scripts/seed-types.js",
+    "seed-animals": "node scripts/seed-animals.js",
+    "seed-data": "npm run seed-types && npm run seed-animals",
+    "db-load-all": "npm run recreate-tables && npm run seed-data",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:watch": "nodemon server.js",
+    "start": "node server.js"
   },
   "author": "Sarah Flynn",
   "license": "ISC",
   "dependencies": {
+    "cool-ascii-faces": "^1.3.4",
     "cors": "^2.8.4",
     "express": "^4.16.3",
-    "knex": "^0.15.2",
     "morgan": "^1.9.0",
-    "pg": "^7.4.3",
-    "shortid": "^2.2.13"
+    "pg": "^7.4.3"
   },
   "devDependencies": {
-    "eslint": "^5.4.0",
-    "nodemon": "^1.18.3"
-  },
-  "keywords": []
+    "eslint": "^4.19.1",
+    "nodemon": "^1.17.5"
+  }
 }

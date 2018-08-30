@@ -10,22 +10,23 @@ app.use(cors());
 
 app.use(express.json());
 
-const pg = require('pg');
-const Client = pg.Client;
-const databaseUrl = 'postgres://localhost:5432/first_fullstack_app';
-const client = new Client(databaseUrl);
-client.connect();
+const client = require('./db-client');
 
 app.get('/api/animals', (req, res) => {
   client.query(`
     SELECT
-      id,
-      name,
-      type,
-      age,
-      dangerous,
-      url
-    FROM animals;
+      a.id,
+      a.name,
+      a.type,
+      a.age,
+      a.dangerous,
+      a.url
+      t.id as "typeID",
+      t.pet
+    FROM animals as a
+    JOIN types as t
+    ON a.type = t.id
+    ORDER BY n.name;
   `)
     .then(result => {
       res.send(result.rows);
