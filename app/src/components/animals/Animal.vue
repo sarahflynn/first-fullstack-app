@@ -1,10 +1,7 @@
 <template>
   <div>
-    <h3>{{ animal.name }}</h3>
+    <router-link :to="`/${animal.id}`">{{ animal.name }}</router-link> <br/>
     <img :src="animal.url"/>
-    <p> Type: {{ animal.type }}</p>
-    <p> Age: {{ animal.age }}</p>
-    <p> Dangerous: {{ animal.dangerous }}</p>
   </div>
 </template>
 
