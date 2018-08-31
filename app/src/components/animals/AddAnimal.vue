@@ -6,7 +6,7 @@
         <input name="name" placeholder="Name" required v-model="animal.name">
       </p>
       <p>Type:<br/>
-        <input name="type" placeholder="Type" required v-model="animal.type">
+        <input name="type" placeholder="Type" required v-model="animal.type_id">
       </p>
       <p>Age:<br/>
         <input type="number" name="age" placeholder="Age" required v-model="animal.age">
