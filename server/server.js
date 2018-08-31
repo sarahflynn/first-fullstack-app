@@ -20,13 +20,13 @@ app.get('/api/animals', (req, res) => {
       a.type_id,
       a.age,
       a.dangerous,
-      a.url
+      a.url,
       t.id as "typeID",
       t.pet
     FROM animals as a
     JOIN types as t
     ON a.type_id = t.id
-    ORDER BY n.name;
+    ORDER BY a.name;
   `)
     .then(result => {
       res.send(result.rows);
