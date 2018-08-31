@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AddAnimal :types="types" :onAdd="handleAdd"/>
+    <AddAnimal :onAdd="handleAdd"/>
     <h2>Animals List</h2>
     <Animal v-for="animal in animals"
       :key="animal.id"
@@ -17,19 +17,16 @@ import api from '../../services/api.js';
 export default {
   data() {
     return {
-      animals: null,
-      types: null
+      animals: null
     };
   },
   created() {
     api.getAnimals()
       .then(animals => {
         this.animals = animals;
+        console.log('animals', this.animals);
       });
-    api.getTypes()
-      .then(types => {
-        this.types = types;
-      });
+
   },
   components: {
     Animal,

@@ -1,5 +1,5 @@
 <template>
-  <AnimalDetail v-if="animal" :animal="animal"/>
+  <AnimalDetail :type="type" v-if="animal" :animal="animal"/>
 </template>
 
 <script>
@@ -10,6 +10,7 @@ export default {
   data() {
     return {
       animal: null,
+      types: null
     };
   },
   created() {
@@ -17,9 +18,24 @@ export default {
       .then(animal => {
         this.animal = animal;
       });
+    api.getTypes()
+      .then(types => {
+        this.types = types;
+      });
   },
   components: {
     AnimalDetail
+  },
+  computed: {
+    type() {
+      if(!this.animal || !this.types) {
+        return null;
+      }
+
+      const { type_id } = this.animal;
+      console.log('type', this.animal);
+      return this.types.find(t => t.id === type_id);
+    }
   }
 };
 </script>
