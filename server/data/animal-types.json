@@ -8,7 +8,7 @@
     "pet": false
   },
   {
-    "type": "slow-loris",
+    "type": "slow loris",
     "pet": false
   },
   {
@@ -20,7 +20,7 @@
     "pet": true
   },
   {
-    "type": "oranutan",
+    "type": "orangutan",
     "pet": false
   }
 ]
