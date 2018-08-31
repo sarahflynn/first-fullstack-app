@@ -81,6 +81,16 @@ app.get('/api/types', (req, res) => {
     });
 });
 
+app.delete('/api/animals/:id', (req, res) => {
+  client.query(`
+    delete from animals where id=$1;
+  `,
+  [req.params.id]
+  ).then(() => { 
+    res.send({ removed: true });
+  });
+});
+
 const PORT = 3000;
 
 app.listen(PORT, () => console.log('app running...'));
