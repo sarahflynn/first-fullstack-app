@@ -6,7 +6,15 @@
         <input name="name" placeholder="Name" required v-model="animal.name">
       </p>
       <p>Type:<br/>
-        <input name="type" placeholder="Type" required v-model="animal.type_id">
+        <select v-model.number="animal.type_id" required>
+          <option disabled value="">Type</option>
+          <option
+            v-for="type in types"
+            :key="type.id"
+            :value="type.id">
+            {{ type.type }}
+          </option>
+        </select>
       </p>
       <p>Age:<br/>
         <input type="number" name="age" placeholder="Age" required v-model="animal.age">
@@ -44,7 +52,8 @@ export default {
     onAdd: {
       type: Function,
       required: true
-    }
+    },
+    types: Array
   },
   data() {
     return {

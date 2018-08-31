@@ -71,6 +71,16 @@ app.post('/api/animals', (req, res) => {
     .catch(err => console.log(err));
 });
 
+app.get('/api/types', (req, res) => {
+  client.query(`
+    SELECT *
+    FROM types;
+  `)
+    .then(result => {
+      res.send(result.rows);
+    });
+});
+
 const PORT = 3000;
 
 app.listen(PORT, () => console.log('app running...'));

@@ -18,5 +18,11 @@ export default {
       body: JSON.stringify(animal)
     })
       .then(response => response.json());
+  },
+  getTypes() {
+    return fetch('http://localhost:3000/api/types', {
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then(response => response.json());
   }
 };
