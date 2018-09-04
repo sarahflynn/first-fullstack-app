@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Add An Animal</h2>
+    <h2>Edit Animal</h2>
     <form @submit.prevent="handleSubmit">
       <p>Name:<br/>
         <input name="name" placeholder="Name" required v-model="animal.name">
@@ -8,7 +8,7 @@
       <p>Type:<br/>
         <select v-model.number="animal.type_id" required>
           <option disabled value="">Type</option>
-          <option v-if="types"
+          <option
             v-for="type in types"
             :key="type.id"
             :value="type.id">
@@ -29,7 +29,7 @@
         <input name="url" placeholder="URL" required v-model="animal.url">
       </p>
       <p>
-        <button>Add</button>
+        <button>Update</button>
       </p>
     </form>
   </div>
@@ -40,6 +40,7 @@ import api from '../../services/api.js';
 
 const initAnimal = () => {
   return {
+    id: '',
     name: '',
     type: '',
     age: '',
@@ -50,7 +51,7 @@ const initAnimal = () => {
 
 export default {
   props: {
-    onAdd: {
+    onUpdate: {
       type: Function,
       required: true
     }
@@ -74,15 +75,13 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.onAdd(this.animal)
+      this.onUpdate(this.animal);
+      console.log('animal', this.animal)
         .then(() => {
+          this.animal.id = this.$route.params.key;
           this.animal = initAnimal();
         });
     }
   }
 };
 </script>
-
-<style>
-
-</style>

@@ -91,6 +91,28 @@ app.delete('/api/animals/:id', (req, res) => {
   });
 });
 
+app.put('/api/animals/:id', (req, res) => {
+  const body = req.body;
+
+  client.query(`
+    update animals
+    set
+      name = $1,
+      type_id = $2,
+      age = $3,
+      dangerous = $4,
+      url = $5
+    where id = $6
+    returning *;
+  `,
+
+  [body.name, body.type_id, body.age, body.dangerous, body.url, req.params.id]
+  ).then(result => {
+    res.send(result.rows[0]);
+  })
+    .catch(err => console.log(err));
+});
+
 const PORT = 3000;
 
 app.listen(PORT, () => console.log('app running...'));

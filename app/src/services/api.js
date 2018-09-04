@@ -32,5 +32,13 @@ export default {
       method: 'DELETE'
     })
       .then(response => response.json());
+  },
+  updateAnimal(animal) {
+    return fetch(`${animalsUrl}/${animal.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(animal)
+    })
+      .then(response => response.json());
   }
 };
